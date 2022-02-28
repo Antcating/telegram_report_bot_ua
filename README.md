@@ -3,29 +3,37 @@
 Цей Телеграм Юзер-Бот використовується для автоматизації репорту пропагандистьских каналів. 
 
 ## Інсталяція 
-1. По-перше, вам необхідно інсталювати Python3. Python можна завантажити за [посиланням](https://www.python.org/). Також треба [завантажити git](https://git-scm.com/download/win) (натискаємо на "Click here to download" зверху, під час встановлення декілька раз натискаємо Next. Далі перезавантажуємо комп'ютер).
+1. По-перше, вам необхідно інсталювати Python3. Python можна завантажити за [посиланням](https://www.python.org/). 
 2. Запустіть консоль. Для цього використовуйте комбінацію клавіш Win+R, у з'явившомуся вікні напишіть cmd та натисніть enter
 3. Далі виконуємо наступні команди:
 ```
 git clone https://github.com/Antcating/telegram_report_bot_ua
 cd telegram_report_bot_ua
-pip install -r requirements.txt
+pip install -r requirements.txt (optional)
 ```
 4. Переходимо за посиланням  https://my.telegram.org/, вводимо свій номер телефону та код авторизації
 <br>Переходимо у вкладку API development tools, пишемо любий App title та Short name
 <br>Нагорі отримуємо App api_id та App api_hash
 <br>**ПЕРЕДАВАТИ КОМУСЬ `api_id` та `api_hash` НІ В ЯКОМУ РАЗІ НЕ МОЖНА!!! Вони дают можливіть контролювати вашу персональну сторінку у Телеграмі.**
+<br>![image-1](imgs/1.png)
+<br>![image-2](imgs/2.png)
+<br>![image-3](imgs/3.png)
+<br>![image-4](imgs/4.png)
+<br>![image-5](imgs/5.png)
 
 ## Використання 
-1. Далі запускаємо бота:`python main.py`
+1. Далі запускаємо бота:`python main.py` або `docker build -t telegram_report_bot_ua . && docker run -it --rm telegram_report_bot_ua`
 2. По черзі вводимо:
 - App api_id
 - App api_hash
 - Телефон вашого аккаунта у форматі +380ххххххххх
-- Код автентифікації який прийде повідомленням у телеграм
-3. Бот автоматично напише репорти на випадкові 150 каналів з файлу `telegram_db`.
+- Код автентифікації який прийде повідомленням у телеграм та, якщо треба, пароль
+
+![image-6](imgs/6.png)
+
+3. Бот автоматично напише репорти на канали, що записані у файлі `telegram_db` з текстом: RUSSIAN PROPAGANDA AGAINST UKRAINE DURING RUSSIAN INVASION IN UKRAINE.
 <br>**Правильно налаштована програма буде відображати такий результат:**
-<br><br>![image](https://user-images.githubusercontent.com/39994538/155859028-e83b5228-e711-4f21-bf4e-db9b1cfccb24.png)
+<br><br>![image-7](imgs/7.png)
 
 Щоб використати інший аккаунт, треба видалили файл session_new.session у папці з програмою (або використати команду `del session_new.session`).
 

@@ -9,10 +9,10 @@ import questionary
 
 from report_text import generate_text
 
-api_id = int(questionary.password('Api ID:').ask())
-api_hash = questionary.password('Api hash:').ask()
+api_id = int(questionary.password("Api ID:").ask())
+api_hash = questionary.password("Api hash:").ask()
 
-client = TelegramClient('session_new', api_id, api_hash)
+client = TelegramClient("session_new", api_id, api_hash)
 client.start()
 
 print('Bot started')
@@ -21,7 +21,7 @@ print('Bot started')
 async def main():
     number_of_channels_rep = 150
 
-    telegram_list = open('telegram_db', 'r').readlines()
+    telegram_list = open("telegram_db", "r").readlines()
     random.shuffle(telegram_list)
 
     for (i, telegram_channel) in enumerate(telegram_list[:number_of_channels_rep]):
@@ -29,14 +29,14 @@ async def main():
             telegram_channel = telegram_channel.split('/')[-1]
         elif '@' in telegram_channel:
             telegram_channel = telegram_channel[1:]
-        print(i + 1, telegram_channel.strip())
+        print(f"{i + 1}. Reporting {telegram_channel.strip()}")
         try:
             result = await client(functions.account.ReportPeerRequest(
                 peer=telegram_channel,
                 reason=types.InputReportReasonSpam(),
                 message=generate_text())
             )
-            print(result)
+            print(f"{telegram_channel.strip()} reported successfully" if result else f"{telegram_channel.strip()} failed to report")
         except ValueError:
             print("Channel not found")
         except errors.UsernameInvalidError:
